@@ -1,0 +1,22 @@
+/* Empty. Add your own CSS if you like */
+.bghome{
+    background-image: url('../img/hotelbnb.jpg');
+    background-repeat: no-repeat, repeat;
+    background-color: #2E77E6;
+    background-position: center center;
+    
+    /*../img/hotelbnb.jpg'*/
+}
+
+
+
+
+
+.error {
+    color: red; }
+    input.ng-invalid-email {
+        color: red;
+    }
+    input.ng-valid-email {
+        color: green;
+    }

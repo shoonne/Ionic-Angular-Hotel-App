@@ -1,0 +1,21 @@
+<ion-pane>
+        <ion-header-bar class="bar-positive">
+          <h1 class="title">Hotel Bed and Breakfast</h1>
+        </ion-header-bar>
+        <ion-content class="has-subheader" ng-controller="ListController">
+          <ion-list>
+            <ion-item 
+            class="item-thumbnail-left" 
+            ng-repeat="item in rooms"
+            href = "#/tab/list/{{item.img}}">
+              <img src="img/{{item.img}}_tn.jpg" alt="">
+              <h2>{{item.name}}</h2>
+              <h3>{{item.pris}}</h3>
+              <h3>{{item.bio}}</h3>
+              <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+            </ion-item>
+            
+          </ion-list>
+    
+        </ion-content>
+      </ion-pane>
