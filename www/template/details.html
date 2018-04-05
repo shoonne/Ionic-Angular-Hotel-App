@@ -1,0 +1,88 @@
+<ion-view view-title="Details">
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-content ng-app="starter" class="bgdt">
+    <ion-list class="list">
+      <ion-item class="item-text-wrap" ng-repeat="item in rooms | filter: {img : whichRoom}">
+        <img ng-src="img/{{item.img}}_tn.jpg" width="100%" height="auto">
+        <h2>{{item.name}}</h2>
+        <h3>{{item.pris}} Kr/natt</h3>
+        <h3 ng-model="data.pris" ng-init="data.price=item.pris"></h3>
+        <p>{{item.bio}}</p>
+    </ion-list>
+
+
+    <form ng-submit="submit()" name="form" class="padding">
+      <ion-item ng-repeat="item in rooms | filter: {img : whichRoom}">
+        <span>Antal vuxna</span>
+        <input type="number" name="adult" required placeholder="st" min="0" max="{{item.max}}" ng-model="data.adult">
+        <br> Lägg till barn
+        <input type="checkbox" ng-model="myVar">
+        <div ng-show="myVar">
+          <ion-item ng-repeat="item in rooms | filter: {img : whichRoom}">
+            <span>Antal barn</span>
+            <input type="number" name="kid" placeholder="St" min="0" max="{{item.max - data.adult}}" ng-model="data.kid">
+        </div>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Check-In</span>
+          <input type="date" name="checkin" min="{{today}}" ng-bind="" ng-model="data.checkin" placeholder="Check in a date" id="date_input"
+            ng-blur="getbookdate()">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Check-Out</span>
+          <input type="date" name="checkout" ng-model="data.checkout" min="{{bookdate}}" ng-blur="confirm()" id="date_input">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Namn</span>
+          <input ng-model="data.firstname" type="text" required placeholder="Ange ditt namn" name="firstname" id="name_input">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Efternamn</span>
+          <input ng-model="data.lastname" type="text" required placeholder="Ange ditt efternamn" name="lastname" id="name_input">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Telefonnummer</span>
+          <input ng-model="data.tel" type="number" required placeholder="Ange ditt nummer" name="tel" id="number_input">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Epost</span>
+          <input ng-model="data.email" type="email" name="email" required placeholder="Ange ditt mail" id="email">
+          <div ng-show="form.email.$error.email" class="error">
+            Ange en giltig epost
+          </div>
+        </label>
+
+        <input class="button button-block button-positive" type="submit" ng-disabled="MyForm.$invalid" name="submit" value="Skicka"
+          id="submit_btn">
+    </form>
+
+    <ion-item ng-repeat="item in rooms | filter: {img : whichRoom}">
+      <label ng-model="data.totPrice" ng-init="tot =data.totPrice" class="item item-input item-stacked-label">
+        <p> Att betala: {{(item.pris) * (diffDate(data.checkin, data.checkout)-0)}}.00 kr. {{tot}} </p>
+      </label>
+
+      <!-- <div class="item item-text-wrap">
+      <h3>Testing</h3>
+      {{data}}
+    </div> 
+
+    <div class="card">
+        <div class="item item-text-wrap">
+          <b>Response från server</b>
+          <br>
+          {{response}}
+        </div>
+      </div>
+  </ion-content>
+</ion-view>
+
+-->
